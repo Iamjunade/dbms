@@ -1,0 +1,5 @@
+{
+  "name": "ISP Billing Management",
+  "description": "A luxury UI for an ISP Billing Database Management System, designed to showcase database concepts for a university micro-project. Features customer management and a pseudo-SQL command console.",
+  "requestFramePermissions": []
+}

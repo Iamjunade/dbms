@@ -1,0 +1,87 @@
+<div class="min-h-screen flex flex-col antialiased">
+  <header class="bg-slate-950/80 backdrop-blur-lg shadow-lg sticky top-0 z-10 border-b border-slate-800/50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <div class="flex items-center space-x-4">
+          <svg class="h-10 w-10 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+          </svg>
+          <div>
+            <div class="flex items-center">
+              <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-white">ISP Billing DBMS</h1>
+              <span class="ml-3 inline-block bg-slate-700/50 text-indigo-300 text-xs font-fira font-semibold px-2.5 py-1 rounded-full border border-slate-600">
+                Simulated In-Memory DB
+              </span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-400">Under the guidance of Prof. Annapoorna</p>
+          </div>
+        </div>
+        <nav class="flex items-center space-x-1 sm:space-x-2 rounded-full bg-slate-800/50 p-1 border border-slate-700">
+          <button (click)="setView('customers')" 
+                  [class.bg-indigo-600]="activeView() === 'customers'"
+                  [class.shadow-[0_0_15px_rgba(99,102,241,0.5)]]="activeView() === 'customers'"
+                  [class.text-white]="activeView() === 'customers'"
+                  [class.text-slate-300]="activeView() !== 'customers'"
+                  [class.hover:bg-slate-700/80]="activeView() !== 'customers'"
+                  class="px-3 py-2 sm:px-4 text-sm font-medium rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-900">
+            Customers
+          </button>
+          <button (click)="setView('console')" 
+                  [class.bg-indigo-600]="activeView() === 'console'"
+                  [class.shadow-[0_0_15px_rgba(99,102,241,0.5)]]="activeView() === 'console'"
+                  [class.text-white]="activeView() === 'console'"
+                  [class.text-slate-300]="activeView() !== 'console'"
+                  [class.hover:bg-slate-700/80]="activeView() !== 'console'"
+                  class="px-3 py-2 sm:px-4 text-sm font-medium rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-900">
+            DB Console
+          </button>
+           <button (click)="setView('architecture')" 
+                  [class.bg-indigo-600]="activeView() === 'architecture'"
+                  [class.shadow-[0_0_15px_rgba(99,102,241,0.5)]]="activeView() === 'architecture'"
+                  [class.text-white]="activeView() === 'architecture'"
+                  [class.text-slate-300]="activeView() !== 'architecture'"
+                  [class.hover:bg-slate-700/80]="activeView() !== 'architecture'"
+                  class="px-3 py-2 sm:px-4 text-sm font-medium rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-900">
+            DB Architecture
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow container mx-auto p-4 sm:p-6 lg:p-8">
+    @if (activeView() === 'customers') {
+      <customer-table></customer-table>
+    } @else if (activeView() === 'architecture') {
+      <db-architecture></db-architecture>
+    } @else {
+      <db-console></db-console>
+    }
+  </main>
+  
+  <footer class="border-t border-slate-800/50 mt-12 py-8">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-slate-400">
+        <div class="flex flex-col md:flex-row justify-center items-center md:items-start gap-8 md:gap-16">
+            <div>
+                <h3 class="font-semibold text-slate-200 mb-2">Team Members</h3>
+                <ul class="space-y-1 text-sm">
+                    <li>Mohammed Junaid Pasha</li>
+                    <li>M.Hrishikesh</li>
+                    <li>Mahender</li>
+                    <li>Pranay</li>
+                    <li>Teja Reddy</li>
+                    <li>Ishan</li>
+                    <li>Satya</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-semibold text-slate-200 mb-2">Guided By</h3>
+                <p class="text-sm">Prof. Annapoorna</p>
+            </div>
+        </div>
+        <div class="mt-8 pt-6 border-t border-slate-800">
+            <p class="text-xs text-slate-500">DBMS Micro-Project &copy; 2025</p>
+        </div>
+    </div>
+  </footer>
+</div>

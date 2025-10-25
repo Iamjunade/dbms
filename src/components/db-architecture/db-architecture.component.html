@@ -1,0 +1,89 @@
+<div class="bg-slate-900/70 backdrop-blur-lg border border-slate-700 rounded-lg shadow-2xl p-6 md:p-8 max-w-7xl mx-auto animate-fade-in">
+  <div class="mb-8 text-center">
+    <h2 class="text-2xl md:text-3xl font-bold text-white">Database Architecture</h2>
+    <p class="text-slate-400 mt-2 max-w-3xl mx-auto">
+      A conceptual model of the ISP Billing schema, demonstrating 3NF normalization and key relationships for a scalable system.
+    </p>
+  </div>
+
+  <!-- 2x2 Grid for Tables -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    
+    <!-- Customers Table -->
+    <div class="bg-slate-800/80 rounded-xl shadow-lg overflow-hidden border border-slate-700">
+      <div class="bg-gradient-to-r from-slate-700 to-slate-800 px-4 py-3">
+        <h3 class="text-lg font-semibold text-indigo-300 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M15 21v-1a6 6 0 00-5.176-5.97M15 21H9" /></svg>
+          customers
+        </h3>
+      </div>
+      <div class="p-4 space-y-3 text-sm">
+        <div><span class="font-mono text-slate-200">id</span> <span class="font-mono text-amber-400 ml-2 text-xs">(PK)</span></div>
+        <div><span class="font-mono text-slate-300">name</span> <span class="text-slate-500 ml-2">VARCHAR(255)</span></div>
+        <div><span class="font-mono text-slate-300">email</span> <span class="text-slate-500 ml-2">VARCHAR(255)</span></div>
+        <div><span class="font-mono text-slate-300">plan_id</span> <span class="font-mono text-slate-500 text-xs">(FK)</span> <em class="text-indigo-400 text-xs not-italic ml-1">- Links to plans table</em></div>
+        <div><span class="font-mono text-slate-300">join_date</span> <span class="text-slate-500 ml-2">DATE</span></div>
+      </div>
+    </div>
+    
+    <!-- Plans Table -->
+    <div class="bg-slate-800/80 rounded-xl shadow-lg overflow-hidden border border-slate-700">
+      <div class="bg-gradient-to-r from-slate-700 to-slate-800 px-4 py-3">
+        <h3 class="text-lg font-semibold text-indigo-300 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
+          plans
+        </h3>
+      </div>
+      <div class="p-4 space-y-3 text-sm">
+        <div><span class="font-mono text-slate-200">id</span> <span class="font-mono text-amber-400 ml-2 text-xs">(PK)</span></div>
+        <div><span class="font-mono text-slate-300">plan_name</span> <span class="text-slate-500 ml-2">VARCHAR(100)</span></div>
+        <div><span class="font-mono text-slate-300">speed_mbps</span> <span class="text-slate-500 ml-2">INTEGER</span></div>
+        <div><span class="font-mono text-slate-300">monthly_charge</span> <span class="text-slate-500 ml-2">DECIMAL(10,2)</span></div>
+      </div>
+    </div>
+
+    <!-- Invoices Table -->
+    <div class="bg-slate-800/80 rounded-xl shadow-lg overflow-hidden border border-slate-700">
+      <div class="bg-gradient-to-r from-slate-700 to-slate-800 px-4 py-3">
+        <h3 class="text-lg font-semibold text-indigo-300 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+          invoices
+        </h3>
+      </div>
+      <div class="p-4 space-y-3 text-sm">
+        <div><span class="font-mono text-slate-200">id</span> <span class="font-mono text-amber-400 ml-2 text-xs">(PK)</span></div>
+        <div><span class="font-mono text-slate-300">customer_id</span> <span class="font-mono text-slate-500 text-xs">(FK)</span> <em class="text-indigo-400 text-xs not-italic ml-1">- Links to customer record</em></div>
+        <div><span class="font-mono text-slate-300">invoice_date</span> <span class="text-slate-500 ml-2">DATE</span></div>
+        <div><span class="font-mono text-slate-300">due_date</span> <span class="text-slate-500 ml-2">DATE</span></div>
+        <div><span class="font-mono text-slate-300">total_amount</span> <span class="text-slate-500 ml-2">DECIMAL(10,2)</span></div>
+        <div><span class="font-mono text-slate-300">status</span> <span class="text-slate-500 ml-2">ENUM('Paid', 'Unpaid', 'Overdue')</span></div>
+      </div>
+    </div>
+    
+    <!-- Payments Table -->
+    <div class="bg-slate-800/80 rounded-xl shadow-lg overflow-hidden border border-slate-700">
+      <div class="bg-gradient-to-r from-slate-700 to-slate-800 px-4 py-3">
+        <h3 class="text-lg font-semibold text-indigo-300 flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
+          payments
+        </h3>
+      </div>
+      <div class="p-4 space-y-3 text-sm">
+        <div><span class="font-mono text-slate-200">id</span> <span class="font-mono text-amber-400 ml-2 text-xs">(PK)</span></div>
+        <div><span class="font-mono text-slate-300">invoice_id</span> <span class="font-mono text-slate-500 text-xs">(FK)</span> <em class="text-indigo-400 text-xs not-italic ml-1">- Links to paid invoice</em></div>
+        <div><span class="font-mono text-slate-300">amount</span> <span class="text-slate-500 ml-2">DECIMAL(10,2)</span></div>
+        <div><span class="font-mono text-slate-300">payment_date</span> <span class="text-slate-500 ml-2">DATETIME</span></div>
+        <div><span class="font-mono text-slate-300">method</span> <span class="text-slate-500 ml-2">VARCHAR(50)</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Performance Section -->
+  <div class="mt-10 pt-6 border-t border-slate-700">
+      <h3 class="text-xl font-semibold text-white text-center mb-4">Performance & Indexing</h3>
+      <p class="text-center text-slate-400 max-w-3xl mx-auto text-sm">
+          To ensure fast query performance, indexes should be created on foreign keys (`plan_id`, `customer_id`, `invoice_id`) and frequently queried columns like `customers.email` and `invoices.status`. This minimizes table scan time and is crucial for a responsive application at scale.
+      </p>
+  </div>
+</div>
