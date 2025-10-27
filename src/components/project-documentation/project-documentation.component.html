@@ -1,0 +1,80 @@
+<div class="bg-slate-900/70 backdrop-blur-lg border border-slate-700 rounded-lg shadow-2xl p-6 md:p-8 max-w-4xl mx-auto animate-fade-in space-y-10">
+  
+  <!-- Header Section -->
+  <div class="text-center">
+    <h2 class="text-3xl font-bold text-white tracking-tight">Project Documentation</h2>
+    <p class="text-slate-400 mt-2 max-w-2xl mx-auto">
+      Comprehensive overview of the ISP Billing Management System micro-project.
+    </p>
+  </div>
+
+  <!-- Abstract Section -->
+  <div class="space-y-4">
+    <h3 class="text-xl font-semibold text-indigo-300 border-b border-slate-700 pb-2">1. Abstract</h3>
+    <p class="text-slate-300 leading-relaxed">
+      This project demonstrates a modern, web-based Database Management System (DBMS) for an Internet Service Provider (ISP). It provides a luxury user interface for managing customer records, billing plans, and invoices. The system features a fully interactive CRUD interface for customer management and a pseudo-SQL console for direct database interaction, simulating real-world database operations. The backend is powered by Supabase, a scalable cloud database, ensuring data persistence and reliability.
+    </p>
+  </div>
+
+  <!-- Key Features Section -->
+  <div class="space-y-4">
+    <h3 class="text-xl font-semibold text-indigo-300 border-b border-slate-700 pb-2">2. Key Features</h3>
+    <ul class="list-disc list-inside text-slate-300 space-y-2 pl-2">
+      <li><strong>Customer Management:</strong> Full CRUD (Create, Read, Update, Delete) functionality for customer records.</li>
+      <li><strong>Dynamic Billing Plans:</strong> Plans are fetched dynamically from the database, allowing for easy updates.</li>
+      <li><strong>Interactive DB Console:</strong> Execute simplified SQL queries (`SELECT`, `DELETE`) to directly manipulate the database.</li>
+      <li><strong>Relational Schema Visualization:</strong> A dedicated view to display the normalized database architecture (3NF).</li>
+      <li><strong>Persistent Data Storage:</strong> Utilizes Supabase (PostgreSQL) for live, persistent data storage.</li>
+      <li><strong>Modern Frontend:</strong> Built with Angular using Signals for state management, providing a reactive and performant UI.</li>
+    </ul>
+  </div>
+
+  <!-- Technology Stack Section -->
+  <div class="space-y-4">
+    <h3 class="text-xl font-semibold text-indigo-300 border-b border-slate-700 pb-2">3. Technology Stack</h3>
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+      <div class="bg-slate-800 p-4 rounded-lg text-center border border-slate-700">
+        <h4 class="font-semibold text-white">Angular</h4>
+        <p class="text-xs text-slate-400">Frontend Framework</p>
+      </div>
+      <div class="bg-slate-800 p-4 rounded-lg text-center border border-slate-700">
+        <h4 class="font-semibold text-white">TypeScript</h4>
+        <p class="text-xs text-slate-400">Programming Language</p>
+      </div>
+      <div class="bg-slate-800 p-4 rounded-lg text-center border border-slate-700">
+        <h4 class="font-semibold text-white">Supabase</h4>
+        <p class="text-xs text-slate-400">Backend & Database</p>
+      </div>
+       <div class="bg-slate-800 p-4 rounded-lg text-center border border-slate-700">
+        <h4 class="font-semibold text-white">PostgreSQL</h4>
+        <p class="text-xs text-slate-400">Database Engine</p>
+      </div>
+      <div class="bg-slate-800 p-4 rounded-lg text-center border border-slate-700">
+        <h4 class="font-semibold text-white">Tailwind CSS</h4>
+        <p class="text-xs text-slate-400">Styling</p>
+      </div>
+      <div class="bg-slate-800 p-4 rounded-lg text-center border border-slate-700">
+        <h4 class="font-semibold text-white">Vercel</h4>
+        <p class="text-xs text-slate-400">Hosting Platform</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Database Schema Notes -->
+   <div class="space-y-4">
+    <h3 class="text-xl font-semibold text-indigo-300 border-b border-slate-700 pb-2">4. Database Schema Notes</h3>
+    <p class="text-slate-300 leading-relaxed">
+      The database schema is designed following the principles of Third Normal Form (3NF) to reduce data redundancy and improve data integrity.
+    </p>
+    <ul class="list-disc list-inside text-slate-300 space-y-2 pl-2">
+      <li><code class="font-fira text-sm bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded">customers</code>: Stores primary customer information. Links to the `plans` table via a <code class="font-fira text-sm bg-slate-800 text-indigo-300 px-1.5 py-0.5 rounded">plan_id</code> foreign key.</li>
+      <li><code class="font-fira text-sm bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded">plans</code>: Contains all available billing plans, their names, and monthly charges. This allows plan details to be updated in one place.</li>
+      <li><code class="font-fira text-sm bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded">invoices</code>: Tracks billing for each customer, linked via <code class="font-fira text-sm bg-slate-800 text-indigo-300 px-1.5 py-0.5 rounded">customer_id</code>. Includes due dates and payment status.</li>
+      <li><code class="font-fira text-sm bg-slate-800 text-amber-300 px-1.5 py-0.5 rounded">payments</code>: Records every payment transaction against a specific invoice, linked by <code class="font-fira text-sm bg-slate-800 text-indigo-300 px-1.5 py-0.5 rounded">invoice_id</code>.</li>
+    </ul>
+     <p class="text-slate-400 text-sm italic pt-2">
+      This normalized structure ensures that data is stored logically and efficiently, preventing anomalies during data insertion, updates, or deletion.
+    </p>
+  </div>
+
+</div>

@@ -16,9 +16,8 @@
             <th scope="col" class="px-6 py-3">Customer ID</th>
             <th scope="col" class="px-6 py-3">Name</th>
             <th scope="col" class="px-6 py-3">Plan</th>
-            <th scope="col" class="px-6 py-3">Due Date</th>
+            <th scope="col" class="px-6 py-3">Join Date</th>
             <th scope="col" class="px-6 py-3">Amount</th>
-            <th scope="col" class="px-6 py-3">Status</th>
             <th scope="col" class="px-6 py-3 text-center">Actions</th>
           </tr>
         </thead>
@@ -28,25 +27,8 @@
               <td class="px-6 py-4 font-mono text-indigo-300">{{ customer.id }}</td>
               <td class="px-6 py-4 font-medium text-white">{{ customer.name }}</td>
               <td class="px-6 py-4">{{ customer.plan }}</td>
-              <td class="px-6 py-4">{{ customer.dueDate }}</td>
+              <td class="px-6 py-4">{{ customer.joinDate }}</td>
               <td class="px-6 py-4">₹{{ customer.monthlyCharge }}</td>
-              <td class="px-6 py-4">
-                <span class="inline-flex items-center px-2 py-1 text-xs font-semibold rounded-full"
-                      [class.bg-green-500/10]="customer.status === 'Paid'"
-                      [class.text-green-300]="customer.status === 'Paid'"
-                      [class.bg-yellow-500/10]="customer.status === 'Unpaid'"
-                      [class.text-yellow-300]="customer.status === 'Unpaid'"
-                      [class.bg-red-500/10]="customer.status === 'Overdue'"
-                      [class.text-red-300]="customer.status === 'Overdue'">
-                  <svg class="h-2 w-2 mr-1.5" fill="currentColor" viewBox="0 0 8 8"
-                    [class.text-green-400]="customer.status === 'Paid'"
-                    [class.text-yellow-400]="customer.status === 'Unpaid'"
-                    [class.text-red-400]="customer.status === 'Overdue'">
-                    <circle cx="4" cy="4" r="3" />
-                  </svg>
-                  {{ customer.status }}
-                </span>
-              </td>
               <td class="px-6 py-4 text-center">
                 <button (click)="openEditForm(customer)" class="font-medium text-indigo-400 hover:underline mr-4">Edit</button>
                 <button (click)="requestDelete(customer.id)" class="font-medium text-rose-400 hover:underline">Delete</button>
@@ -54,7 +36,7 @@
             </tr>
           } @empty {
             <tr class="bg-slate-800">
-              <td colspan="7" class="text-center py-8 text-slate-400">No customer records found.</td>
+              <td colspan="6" class="text-center py-8 text-slate-400">No customer records found.</td>
             </tr>
           }
         </tbody>
@@ -90,25 +72,16 @@
               <div>
                 <label for="plan" class="block mb-2 text-sm font-medium text-slate-300">Billing Plan</label>
                 <select id="plan" name="plan" [value]="editingCustomer()?.plan || ''" class="bg-slate-700/50 border border-slate-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5" required>
-                  @for(plan of plans; track plan) {
-                    <option [value]="plan">{{ plan }} (₹{{planCharges[plan]}})</option>
+                  @for(plan of plans(); track plan.id) {
+                    <option [value]="plan.plan_name">{{ plan.plan_name }} (₹{{plan.monthly_charge}})</option>
                   }
                 </select>
               </div>
-              <!-- Status -->
+               <!-- Join Date -->
               <div>
-                <label for="status" class="block mb-2 text-sm font-medium text-slate-300">Payment Status</label>
-                <select id="status" name="status" [value]="editingCustomer()?.status || ''" class="bg-slate-700/50 border border-slate-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5" required>
-                  @for(status of statuses; track status) {
-                    <option [value]="status">{{ status }}</option>
-                  }
-                </select>
+                <label for="joinDate" class="block mb-2 text-sm font-medium text-slate-300">Join Date</label>
+                <input type="date" id="joinDate" name="joinDate" [value]="editingCustomer()?.joinDate || ''" class="bg-slate-700/50 border border-slate-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5" required>
               </div>
-            </div>
-
-            <div>
-              <label for="dueDate" class="block mb-2 text-sm font-medium text-slate-300">Due Date</label>
-              <input type="date" id="dueDate" name="dueDate" [value]="editingCustomer()?.dueDate || ''" class="bg-slate-700/50 border border-slate-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5" required>
             </div>
 
             <div class="flex justify-end space-x-4 pt-4">

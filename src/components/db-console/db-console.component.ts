@@ -23,8 +23,7 @@ export class DbConsoleComponent {
 
   exampleQueries = [
     "SELECT * FROM customers",
-    "SELECT * FROM customers WHERE status = 'Unpaid'",
-    "SELECT * FROM customers WHERE plan = 'Gigabit Fiber'",
+    "SELECT * FROM customers WHERE plan_id = 2",
     "DELETE FROM customers WHERE id = 101"
   ];
   
@@ -61,15 +60,12 @@ export class DbConsoleComponent {
     this.query.set(example);
   }
 
-  runQuery() {
+  async runQuery() {
     this.isLoading.set(true);
     this.result.set(null);
 
-    // Simulate network latency for a better "loading" feel
-    setTimeout(() => {
-      const res = this.customerService.executeQuery(this.query());
-      this.result.set(res);
-      this.isLoading.set(false);
-    }, 500);
+    const res = await this.customerService.executeQuery(this.query());
+    this.result.set(res);
+    this.isLoading.set(false);
   }
 }

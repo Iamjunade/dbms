@@ -1,12 +1,17 @@
-export type Plan = 'Fiber 50Mbps' | 'Fiber 100Mbps' | 'Fiber 500Mbps' | 'Gigabit Fiber';
-export type Status = 'Paid' | 'Unpaid' | 'Overdue';
+export type PlanName = 'Fiber 50Mbps' | 'Fiber 100Mbps' | 'Fiber 500Mbps' | 'Gigabit Fiber';
+
+export interface Plan {
+  id: number;
+  plan_name: PlanName;
+  monthly_charge: number;
+}
 
 export interface Customer {
   id: number;
   name: string;
   email: string;
-  plan: Plan;
+  plan: PlanName;
+  planId: number;
   monthlyCharge: number;
-  dueDate: string; // YYYY-MM-DD
-  status: Status;
+  joinDate: string; // YYYY-MM-DD
 }
